@@ -123,8 +123,64 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	margin-bottom: 60px;
 }
+
+
+
+/* CATEGORIES*/
+
+.categories{
+	margin-bottom: 60px;
+	
+}
+
+.categories ul {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.categories ul li{
+	padding: 13px 20px 11px;
+
+	font-family: 'Syne';
+    font-weight: 700;
+	color: #1D6154;
+	font-size: 20px;
+
+	border: 1px solid #1D6154;
+	border-radius: 50px;
+		
+}
+
+.categories ul li:hover{
+	color: white;
+	background-color: #1D6154;
+	cursor: pointer;
+}
+
+
+.categories ul li:nth-child(1) {
+    order: 2;
+} 
+.categories li:nth-child(2) {
+    order: 3;
+}
+.categories li:nth-child(3) {
+    order: 1;
+}
+.categories li:nth-child(4) {
+    order: 4;
+}
+
+
+
+
+
+
+
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -184,5 +240,5 @@ footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
-}
 
+}
