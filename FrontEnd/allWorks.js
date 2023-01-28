@@ -95,7 +95,7 @@ function displayWorks(works){
         
         
         const figure = document.createElement('figure')
-        figure.setAttribute("id", work.id)
+        
         
         const img = document.createElement('img')
         img.src = work.imageUrl
@@ -112,13 +112,14 @@ function displayWorks(works){
 }
 displayWorks(works)
 
+
 function displayCategories(categories) {
 
     const ul = document.createElement("ul")
 
     const all = document.createElement("li")
     all.setAttribute("id", "btn-all")
-    all.setAttribute("class", "btn-cat")
+    
 
     all.innerText = "Tous"
 
@@ -144,21 +145,28 @@ function displayCategories(categories) {
 //btn§all
 displayCategories(categories)
 
-const elementButton = document.querySelectorAll('.categories li');
 
 
-for(let i of elementButton){
-    i.addEventListener('click', function(event){
-        event.preventDefault()
+const all = document.getElementById("btn-all");
+all.addEventListener("click", function() {
+    document.querySelector('.gallery').innerHTML = "";
+    displayWorks(works);
 
-        if(i.id === "btn-all"){
-            displayWorks(works)
+})
 
-        }else{
-            const filterWorks = works.filter(oeuvre => oeuvre.category.id === Number(i.id));
+ const list = document.querySelectorAll('.btn-cat');
+
+for(let li of list){
+    li.addEventListener('click', function(event){
+        event.preventDefault()  
+          
+ 
+            
+            const filterWorks = works.filter(work => work.category.id === Number(li.id));
             gallery.innerHTML=""
             displayWorks(filterWorks)
-        }
+            
+        
     })
 }
 
