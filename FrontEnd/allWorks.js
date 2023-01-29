@@ -1,101 +1,31 @@
-/*//stocker l'API
-const apiWorks = "http://localhost:5678/api/works"
+//Stock API
+const apiWorks = 'http://localhost:5678/api/works';
+const apiCategories = 'http://localhost:5678/api/categories';
 
-const apiCategories = "http://localhost:5678/api/categories"
-
-
-async function getWorks(){
-
-//recupère l'API
-    const response =  await fetch(apiWorks)
-    const datas = await response.json()
-
-    //boucle pour afficher les éléments de l'API(Works)
-    for(let data of datas){
-
-        const gallery = document.querySelector(".gallery")
-        
-        const figure = document.createElement('figure')
-        figure.setAttribute("id", data.id)
-        
-        const img = document.createElement('img')
-        img.src = data.imageUrl
-        img.setAttribute("crossorigin", "anonymous")
-
-        const figCaption = document.createElement('figcaption')
-        figCaption.innerText = data.title
-        
-        gallery.appendChild(figure)
-
-        figure.appendChild(img)
-        figure.appendChild(figCaption)     
-        
-    }
-    return datas
-
-}
-
-
-
-async function getCategories(){
-
-    const response = await fetch(apiCategories)
-    const datas = await response.json() 
-
-    const ul = document.createElement("ul")
-
-    const all = document.createElement("li")
-    all.setAttribute("class", "btn-all")
-    
-    all.innerText = "Tous"
-
-
-        for(let categorie of datas){
-            const categories = document.querySelector(".categories")
-        
-
-        
-        const li = document.createElement("li")
-        li.setAttribute("id", categorie.id)
-        
-
-        li.innerText = categorie.name
-            
-        categories.appendChild(ul)
-        ul.appendChild(all)
-        ul.appendChild(li)
-        
-    }
- return datas
-}
- 
-*/
-
+//Stock Function
 let works = await getWorks()
 let categories = await getCategories()
 
+// API recovery
 async function getWorks() {
-    const response = await fetch('http://localhost:5678/api/works');
+    const response = await fetch(apiWorks);
     const works = await response.json();
     return works ;
 
 }
 
 async function getCategories() {
-    const response = await fetch('http://localhost:5678/api/categories');
+    const response = await fetch(apiCategories);
     const categories = await response.json();
     return categories;
 }
 
-const gallery = document.querySelector(".gallery")
+
+//Gallery display in the DOM
 function displayWorks(works){
-
+    const gallery = document.querySelector(".gallery")
     for(let work of works){
-
-        
-        
         const figure = document.createElement('figure')
-        
         
         const img = document.createElement('img')
         img.src = work.imageUrl
@@ -105,68 +35,54 @@ function displayWorks(works){
         figCaption.innerText = work.title
         
         gallery.appendChild(figure)
-
         figure.appendChild(img)
         figure.appendChild(figCaption)
     }   
 }
-displayWorks(works)
 
 
+//Categories display in the DOM
 function displayCategories(categories) {
-
     const ul = document.createElement("ul")
 
     const all = document.createElement("li")
     all.setAttribute("id", "btn-all")
-    
-
     all.innerText = "Tous"
-
-
-        for(let categorie of categories){
-            const categories = document.querySelector(".categories")
-        
-
+    
+    for(let categorie of categories){
+        const categories = document.querySelector(".categories")
         
         const li = document.createElement("li")
         li.setAttribute("id", categorie.id)
         li.setAttribute("class", "btn-cat")
-        
-
         li.innerText = categorie.name
-            
+
         categories.appendChild(ul)
         ul.appendChild(all)
-        ul.appendChild(li)
-        
+        ul.appendChild(li) 
     }
 }
-//btn§all
+
+// 
+displayWorks(works)
 displayCategories(categories)
 
-
-
+//Add click for "Tous"
 const all = document.getElementById("btn-all");
 all.addEventListener("click", function() {
     document.querySelector('.gallery').innerHTML = "";
     displayWorks(works);
-
+    
 })
 
- const list = document.querySelectorAll('.btn-cat');
-
+//Add click for other categories
+const list = document.querySelectorAll('.btn-cat');
 for(let li of list){
     li.addEventListener('click', function(event){
-        event.preventDefault()  
-          
- 
-            
+        event.preventDefault(event)  
             const filterWorks = works.filter(work => work.category.id === Number(li.id));
-            gallery.innerHTML=""
+            document.querySelector('.gallery').innerHTML=""
             displayWorks(filterWorks)
-            
-        
     })
 }
 
