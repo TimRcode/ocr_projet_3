@@ -1,5 +1,6 @@
 
 
+
 //Stock API
 const apiWorks = 'http://localhost:5678/api/works';
 const apiCategories = 'http://localhost:5678/api/categories';
@@ -103,4 +104,37 @@ const onClick = document.querySelectorAll('.btn-cat')
                 }
                 allCat.classList.add('active')
             })
+}
+
+
+
+//login
+
+const Auth = JSON.parse(window.localStorage.getItem('Auth'))
+
+if ( Auth && Auth.token) {
+
+    const loginButton = document.querySelector(".login");
+
+    loginButton.innerHTML = `<a href="#">logout</a>`;
+    loginButton.classList.replace("login", "logout");
+   
+}
+
+
+// logout 
+const logout = document.querySelector(".logout");
+
+if (logout) { 
+    logout.addEventListener("click", function(event) {
+        event.preventDefault
+
+
+    window.localStorage.removeItem("Auth");
+
+   
+    logout.innerHTML = `<a href="login.html">login</a>`;
+    logout.classList.replace("logout", "login");
+    
+    })
 }

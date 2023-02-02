@@ -20,8 +20,9 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	font-weight: 700;
 	vertical-align: baseline;
+	text-decoration: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -31,9 +32,12 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
+ol, ul, a{
 	list-style: none;
+	color: black;
 }
+
+
 blockquote, q {
 	quotes: none;
 }
@@ -95,9 +99,13 @@ nav li {
 	font-size: 1.2em;
 }
 
-li:hover {
+li:hover, a:hover {
 	color: #B1663C;
+	cursor: pointer;
+	font-weight: bolder;
 }
+
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -151,13 +159,13 @@ li:hover {
 
 	border: 1px solid #1D6154;
 	border-radius: 50px;
+	transition: all 0.3s ease-in-out;
 		
 }
 
-.categories ul li:hover{
+.categories li:hover{
 	color: white;
 	background-color: #1D6154;
-	cursor: pointer;
 }
 
 
@@ -174,9 +182,14 @@ li:hover {
     order: 4;
 }
 
-
-
-
+.categories ul li.active{
+	
+		color: white;
+		background-color: #1D6154;
+		cursor: pointer;
+		
+	
+}
 
 
 
@@ -242,3 +255,95 @@ footer nav ul {
 	margin: 2em
 
 }
+
+/*LOGIN */
+
+body{
+	background-color: #FFFEF8;
+	height: 100vh;
+	
+}
+
+.header-log{
+	margin-bottom: 150px;
+	padding-top: 50px;
+	margin-top: 0;
+}
+
+.nav-log li{
+	padding: 0 20px;
+}
+
+#login{
+	margin: 0 auto;
+}
+#login h2{
+	font-size: 40px;
+	margin-bottom: 50px;
+	
+}
+
+#login form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#login div{
+	display: flex;
+	flex-direction: column;
+	
+}
+#login div label{
+	font-size: 15px;
+	margin-bottom: 5px;
+}
+
+#login input{
+	margin-bottom: 30px;
+	width: 379px;
+	height: 51px;
+
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#login button {
+    height: 36px;
+	width: 179px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgb(0 0 0 / 9%);
+	border-radius: 60px;
+	background-color: #1D6154;
+	color: white;
+	font-family: "syne";
+	margin-bottom: 30px;
+
+}
+
+#login a{
+	text-decoration: underline;
+}
+
+.footer-log nav{
+	display: flex;
+	justify-content: end;
+}
+
+.footer-log ul{
+		position: absolute;
+		bottom: 0;
+		margin-right: 0;
+		
+}
+
+.footer-log ul li{
+	padding: 0;
+}
+
+.admin-container{
+	display: none;
+}
+
