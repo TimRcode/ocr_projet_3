@@ -77,6 +77,7 @@ displayCategories(categories)
 const all = document.getElementById("btn-all");
 all.addEventListener("click", function() {
     document.querySelector('.gallery').innerHTML = "";
+    
     displayWorks(works);
     
    
@@ -106,21 +107,29 @@ const onClick = document.querySelectorAll('.btn-cat')
             })
 }
 
-
+// login.js
 
 //login
 
 const Auth = JSON.parse(window.localStorage.getItem('Auth'))
 
+//auth et le token sont récuperer
 if ( Auth && Auth.token) {
 
     const loginButton = document.querySelector(".login");
 
     loginButton.innerHTML = `<a href="#">logout</a>`;
     loginButton.classList.replace("login", "logout");
-   
-}
 
+    document.querySelector(".categories").style.display = "none";
+   
+} else{
+    
+    const editors = document.querySelectorAll(".hide-edition");
+    for(let editor of editors){
+        editor.remove()
+    }
+}
 
 // logout 
 const logout = document.querySelector(".logout");
@@ -128,13 +137,16 @@ const logout = document.querySelector(".logout");
 if (logout) { 
     logout.addEventListener("click", function(event) {
         event.preventDefault
-
-
+        const editors = document.querySelectorAll(".hide-edition");
+        for(let editor of editors){
+            editor.remove()
+            }
+    
     window.localStorage.removeItem("Auth");
 
-   
+    document.querySelector(".categories").style.display = "";
+
     logout.innerHTML = `<a href="login.html">login</a>`;
     logout.classList.replace("logout", "login");
-    
     })
 }

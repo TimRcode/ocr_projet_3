@@ -20,7 +20,7 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font-weight: 700;
+	font-weight: 400;
 	vertical-align: baseline;
 	text-decoration: none;
 }
@@ -102,7 +102,7 @@ nav li {
 li:hover, a:hover {
 	color: #B1663C;
 	cursor: pointer;
-	font-weight: bolder;
+	
 }
 
 
@@ -129,10 +129,7 @@ li:hover, a:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 60px;
-}
+
 
 
 
@@ -273,7 +270,9 @@ body{
 .nav-log li{
 	padding: 0 20px;
 }
-
+.nav-log li{
+	font-weight: 600;
+}
 #login{
 	margin: 0 auto;
 }
@@ -343,7 +342,72 @@ body{
 	padding: 0;
 }
 
-.admin-container{
-	display: none;
+
+/* mode édition*/
+
+.mode-edition {
+	display: flex;
+	background-color: black;
+	height: 59px;
+	justify-content: center;
+	align-items: center;
+	gap: 21px;
 }
+
+.mode-edition p:nth-child(1){
+	color: white;
+	font-family: 'Work Sans';
+	font-size: 16px;
+	
+}
+
+
+.mode-edition p:nth-child(2){
+	font-family: 'Work Sans';
+	border-radius: 60px;
+	background-color: white;
+	padding: 11px 23px;	
+}
+
+#introduction figure .modifier{
+	display: block;
+	margin: auto;
+	margin-left: 56px;
+	margin-top: 16px;
+	
+}
+
+.modifier i{
+	margin-right: 10px;
+	
+}
+
+#introduction h2{
+	margin-top: 20px;
+}
+
+#portfolio h2 span{
+	font-size: 14px;
+	font-family: 'Work Sans';
+	margin-left: 31px;
+	color: black;
+	display: block;
+	
+}
+
+#portfolio div:first-child{
+	display: flex;
+	justify-content: center;
+	vertical-align: middle;
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+	margin-bottom: 60px;
+	gap: 31px;
+
+}
+#portfolio span{
+	align-self: center;
+}
+
 

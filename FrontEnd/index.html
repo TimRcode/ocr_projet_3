@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -10,12 +9,18 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	
+	<!--icon modifier-->
+	<script src="https://kit.fontawesome.com/7e23802e8b.js" crossorigin="anonymous"></script>
+
 	<script src="javascript/works.js" type="module" defer> </script>
-	<script src="javascript/login.js" type="module" defer></script>
 	
+	<title>Sophie Bluel - Architecte d'intérieur</title>
 </head>
 <body>
-
+	 <div class="mode-edition modifier hide-edition">
+		<p><i class="fa-regular fa-pen-to-square"></i> Mode édition</p>
+		<p> publier les changments</p>
+	 </div>
 <header>
 	
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
@@ -32,8 +37,10 @@
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
+			<span  class="modifier hide-edition"><i class="fa-regular fa-pen-to-square"></i>modifier</span>
 		</figure>
 		<article>
+			<span  class="modifier modifier hide-edition"><i class="fa-regular fa-pen-to-square"></i>modifier</span>
 			<h2>Designer d'espace</h2>
 			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
@@ -41,8 +48,11 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		
+		<div>
+		<h2>Mes Projets</h2> 
+		<span  class="modifier hide-edition"><i class="fa-regular fa-pen-to-square"></i>modifier</span> 
+		</div>
+	
 		<div class="categories">
 			
 		</div>
