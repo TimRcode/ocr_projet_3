@@ -1,6 +1,5 @@
 
 
-
 //Stock API
 const apiWorks = 'http://localhost:5678/api/works';
 const apiCategories = 'http://localhost:5678/api/categories';
@@ -9,7 +8,7 @@ const apiCategories = 'http://localhost:5678/api/categories';
 let works = await getWorks()
 let categories = await getCategories()
 
-// API recovery
+// API recovery - récupération de l'api
 async function getWorks() {
     const response = await fetch(apiWorks);
     const works = await response.json();
@@ -89,10 +88,11 @@ for(let list of listApi){
     list.addEventListener('click', function(event){
         event.preventDefault(event) 
         
-            const filterWorks = works.filter(work => work.category.id === Number(list.id));
+            //filtre chaque id de catégories qui correspond à l'id des projets
+            const filterWorks = works.filter(work => work.category.id == (list.id));
             document.querySelector('.gallery').innerHTML=""
             displayWorks(filterWorks)
-            })
+            })     
 }
 
 
@@ -107,13 +107,14 @@ const onClick = document.querySelectorAll('.btn-cat')
             })
 }
 
-// login.js
 
-//login
 
+
+//Récupération de la clé "Auth"
+//JSON.parse convertit la chaîne de caractères au format JSON en un objet JavaScript
 const Auth = JSON.parse(window.localStorage.getItem('Auth'))
 
-//auth et le token sont récuperer
+//Condition si  "Auth" et le token sont true alors là condition est exécuté
 if ( Auth && Auth.token) {
 
     const loginButton = document.querySelector(".login");
@@ -122,9 +123,8 @@ if ( Auth && Auth.token) {
     loginButton.classList.replace("login", "logout");
 
     document.querySelector(".categories").style.display = "none";
-   
+//Si false, supprime tous les élément avec la classe ".hide-edition"
 } else{
-    
     const editors = document.querySelectorAll(".hide-edition");
     for(let editor of editors){
         editor.remove()
@@ -141,7 +141,7 @@ if (logout) {
         for(let editor of editors){
             editor.remove()
             }
-    
+    //Supprime la valeur de la clé "Auth"
     window.localStorage.removeItem("Auth");
 
     document.querySelector(".categories").style.display = "";
