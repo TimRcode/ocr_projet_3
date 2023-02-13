@@ -27,7 +27,7 @@ const loginSubmit = document.querySelector("form")
                 const data = await response.json();
                 
                 //Enregistre la clé Auth et convertit data en une chaîne de caractère, dans le localStorage
-                window.localStorage.setItem("Auth", JSON.stringify(data));
+                localStorage.setItem("Auth", JSON.stringify(data));
 
                 window.location.replace("index.html");
             //Vérifie si le code de status est à 404 ou 401
@@ -45,3 +45,45 @@ const loginSubmit = document.querySelector("form")
             document.querySelector("div").prepend(errorMessage);
         }
     });
+
+
+//Récupération de la clé "Auth"
+//JSON.parse convertit la chaîne de caractères au format JSON en un objet JavaScript
+const Auth = JSON.parse(localStorage.getItem('Auth'))
+
+//Condition si  "Auth" et le token sont true alors là condition est exécuté
+if ( Auth && Auth.token) {
+
+    const loginButton = document.querySelector(".login");
+
+    loginButton.innerHTML = `<a href="#">logout</a>`;
+    loginButton.classList.replace("login", "logout");
+
+    document.querySelector(".categories").style.display = "none";
+//Si false, supprime tous les élément avec la classe ".hide-edition"
+} else{
+    const editors = document.querySelectorAll(".hide-edition");
+    for(let editor of editors){
+        editor.remove()
+    }
+}
+
+// logout 
+const logout = document.querySelector(".logout");
+
+if (logout) { 
+    logout.addEventListener("click", function(event) {
+        event.preventDefault
+        const editors = document.querySelectorAll(".hide-edition");
+        for(let editor of editors){
+            editor.remove()
+            }
+    //Supprime la valeur de la clé "Auth"
+    localStorage.removeItem("Auth");
+
+    document.querySelector(".categories").style.display = "";
+
+    logout.innerHTML = `<a href="login.html">login</a>`;
+    logout.classList.replace("logout", "login");
+    })
+}

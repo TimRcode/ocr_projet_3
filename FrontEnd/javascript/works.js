@@ -4,12 +4,9 @@
 const apiWorks = 'http://localhost:5678/api/works';
 const apiCategories = 'http://localhost:5678/api/categories';
 
-//Stock Function
-let works = await getWorks()
-let categories = await getCategories()
 
-// API recovery - récupération de l'api
-async function getWorks() {
+// recupère les données
+export async function getWorks() {
     const response = await fetch(apiWorks);
     const works = await response.json();
     return works ;
@@ -23,10 +20,12 @@ async function getCategories() {
 }
 
 
+
+
 //Gallery display in the DOM
-function displayWorks(works){
+ function displayWorks(dataWorks){
     const gallery = document.querySelector(".gallery")
-    for(let work of works){
+    for(let work of dataWorks){
         const figure = document.createElement('figure')
         
         const img = document.createElement('img')
@@ -40,6 +39,7 @@ function displayWorks(works){
         figure.appendChild(img)
         figure.appendChild(figCaption)
     }   
+    
 }
 
 
@@ -66,6 +66,8 @@ function displayCategories(categories) {
     }
 }
 
+let works = await getWorks()
+let categories = await getCategories()
 
 displayWorks(works)
 displayCategories(categories)
@@ -89,7 +91,8 @@ for(let list of listApi){
         event.preventDefault(event) 
         
             //filtre chaque id de catégories qui correspond à l'id des projets
-            const filterWorks = works.filter(work => work.category.id == (list.id));
+            const filterWorks = works.filter(work => work.category.id == list.id);
+            
             document.querySelector('.gallery').innerHTML=""
             displayWorks(filterWorks)
             })     
@@ -109,44 +112,3 @@ const onClick = document.querySelectorAll('.btn-cat')
 
 
 
-
-//Récupération de la clé "Auth"
-//JSON.parse convertit la chaîne de caractères au format JSON en un objet JavaScript
-const Auth = JSON.parse(window.localStorage.getItem('Auth'))
-
-//Condition si  "Auth" et le token sont true alors là condition est exécuté
-if ( Auth && Auth.token) {
-
-    const loginButton = document.querySelector(".login");
-
-    loginButton.innerHTML = `<a href="#">logout</a>`;
-    loginButton.classList.replace("login", "logout");
-
-    document.querySelector(".categories").style.display = "none";
-//Si false, supprime tous les élément avec la classe ".hide-edition"
-} else{
-    const editors = document.querySelectorAll(".hide-edition");
-    for(let editor of editors){
-        editor.remove()
-    }
-}
-
-// logout 
-const logout = document.querySelector(".logout");
-
-if (logout) { 
-    logout.addEventListener("click", function(event) {
-        event.preventDefault
-        const editors = document.querySelectorAll(".hide-edition");
-        for(let editor of editors){
-            editor.remove()
-            }
-    //Supprime la valeur de la clé "Auth"
-    window.localStorage.removeItem("Auth");
-
-    document.querySelector(".categories").style.display = "";
-
-    logout.innerHTML = `<a href="login.html">login</a>`;
-    logout.classList.replace("logout", "login");
-    })
-}

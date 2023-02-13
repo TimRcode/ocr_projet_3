@@ -59,11 +59,13 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: #FFFEF8;
+	height: 100vh;
 }
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
 }
 section {
 	margin: 50px 0
@@ -258,24 +260,18 @@ footer nav ul {
 
 /*LOGIN */
 
-body{
-	background-color: #FFFEF8;
-	height: 100vh;
-	
-}
 
 .header-log{
-	margin-bottom: 150px;
 	padding-top: 50px;
+	margin-bottom: 150px;
 	margin-top: 0;
 }
 
 .nav-log li{
 	padding: 0 20px;
-}
-.nav-log li{
 	font-weight: 600;
 }
+
 #login{
 	margin: 0 auto;
 }
@@ -294,7 +290,6 @@ body{
 #login div{
 	display: flex;
 	flex-direction: column;
-	
 }
 #login div label{
 	font-size: 15px;
@@ -302,9 +297,9 @@ body{
 }
 
 #login input{
-	margin-bottom: 30px;
 	width: 379px;
 	height: 51px;
+	margin-bottom: 30px;
 
 	border: none;
 	border-radius: 5px;
@@ -314,15 +309,16 @@ body{
 #login button {
     height: 36px;
 	width: 179px;
-    font-size: 1.2em;
-    border: none;
-    box-shadow: 0px 4px 14px rgb(0 0 0 / 9%);
-	border-radius: 60px;
-	background-color: #1D6154;
-	color: white;
-	font-family: "syne";
 	margin-bottom: 30px;
 
+	font-family: "syne";
+    font-size: 1.2em;
+	color: white;
+
+	background-color: #1D6154;
+    border: none;
+	border-radius: 60px;
+    box-shadow: 0px 4px 14px rgb(0 0 0 / 9%);
 }
 
 #login a{
@@ -338,7 +334,6 @@ body{
 		position: absolute;
 		bottom: 0;
 		margin-right: 0;
-		
 }
 
 .footer-log ul li{
@@ -349,137 +344,188 @@ body{
 /* mode édition*/
 
 .mode-edition {
+	position: relative;
+	z-index: 100;
+	
 	display: flex;
-	background-color: black;
-	height: 59px;
 	justify-content: center;
 	align-items: center;
+
+	background-color: black;
+	height: 59px;
 	gap: 21px;
+
 }
 
 .mode-edition p:nth-child(1){
-	color: white;
 	font-family: 'Work Sans';
 	font-size: 16px;
-	
+	color: white;
 }
 
 
 .mode-edition p:nth-child(2){
-	font-family: 'Work Sans';
-	border-radius: 60px;
-	background-color: white;
 	padding: 11px 23px;	
+	font-family: 'Work Sans';
+	background-color: white;
+	border-radius: 60px;
+
+	cursor: pointer;
 }
 
 #introduction figure .modifier{
 	display: block;
-	margin: auto;
 	margin-left: 56px;
 	margin-top: 16px;
-	
 }
 
 .modifier i{
 	margin-right: 10px;
-	
 }
 
 #introduction h2{
 	margin-top: 20px;
 }
 
-#portfolio h2 span{
-	font-size: 14px;
-	font-family: 'Work Sans';
-	margin-left: 31px;
-	color: black;
-	display: block;
-	
-}
 
 #portfolio div:first-child{
 	display: flex;
 	justify-content: center;
-	vertical-align: middle;
-	width: 100%;
-	height: auto;
-	box-sizing: border-box;
+
 	margin-bottom: 60px;
 	gap: 31px;
-
 }
+
 #portfolio span{
 	align-self: center;
+	cursor: pointer;
 }
+
+
+/*Modal Delete*/
+
 
 #modal{
 		position: fixed;
+		left: 0;
+		top: 0;
+
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		left: 0;
-		top: 0;
+		
 		width: 100%;
 		height: 100%;
-		background: rgba(0,0,0,0.8); 
+
+		background: rgba(0,0,0,0.3); 
 }
 
 .modal-wrapper{
+	position: relative;
 	
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	padding: 50px 100px;
+	max-width: 630px;
 	
-	width: 500px;
-	padding: 30px;
+	border-radius: 10px;
 	background-color: white;
-	position: relative;
+}
+.modal-wrapper h1{
+	font-family: 'Work Sans';
+	font-size: 26px;
+	font-weight: 400;
+	color: black;
+	margin-bottom: 50px;
 }
 
 .gallery-modal{
 	display: flex;
 	flex-wrap: wrap;
 	
-
+	
+	width: 100%;
+	gap: 15px 10px;
+	margin-bottom: 50px;
 }
 .image-wrapper{
 	position: relative;
-	z-index: 3;
-	box-sizing: border-box;
-	width: 70px;
+	z-index: 1;
 
+	width: 78px;
 }
 
 #modal .image-wrapper img:first-child{
 	width: 100%;
-	
-	position: relative;
-	z-index: 3;
-	
 }
 
-
-
-
-
-  .bin{
+.bin{
 	position: absolute;
-	z-index: 100;
-	padding: 3px;
-    top: 0;
-    right: 0;
-    width: 17px;
-    background-repeat: no-repeat;
-		background-size: cover;
-		object-fit: cover;
+	right: 3px;
+	top: 3px;
 	
-  }
+    height: 17px;
+	object-fit: cover;	
+}
+
+.enlarge{
+	position: absolute;
+	right: 22px;
+	top: 3px;
+	
+	display: none;
+    height: 17px;
+	object-fit: cover;	
+}
+
+.image-wrapper:hover .enlarge{
+	display: block;
+}
+
+.image-wrapper span {
+	font-size: 12px;
+}
 
 .close{
-	width: 20px;
 	position: absolute;
-	z-index: 999;
-	right: 0;
-	top: 0;
+	top: 32px;
+	right: 32px;
+
+	height: 12px;
+	object-fit: cover;
+}
+
+#modal hr{
+	width: 420px;
+	margin-bottom: 40px;
+	border-top: 1px solid #B3B3B3;
+}
+
+.add-image{
+	font-family: "Syne";
+	font-weight: 700;
+	font-size: 14px;
+	color: white;
+	
+	padding: 9px 49px;
+	width: 237px;
+	margin-bottom: 30px;
+
+    border: none;
+	border-radius: 60px;
+	background-color: #1D6154;
+	box-shadow: 0px 4px 14px rgb(0 0 0 / 9%);
+}
+
+.remove-gallery{
+	font-family: 'Syne';
+	font-weight: 400;
+	font-size: 14px;
+	color: #D65353;
+
+	background-color: white;
+	border: none;
 }
