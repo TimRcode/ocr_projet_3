@@ -11,7 +11,7 @@ const btnModal = document.querySelector("#modal-mod")
 const modal =document.querySelector('#modal')
 const gallery = document.querySelector(".gallery-modal")
 
-
+if(Auth && Auth.token){
 btnModal.addEventListener("click", event =>{
     event.preventDefault
     //la modal apparaît
@@ -46,11 +46,28 @@ btnModal.addEventListener("click", event =>{
       imageWrapper.appendChild(bin)
       imageWrapper.appendChild(editor)
       imageWrapper.appendChild(enlarge)
-
-      bin.addEventListener("click", function() {
+/* requete delete
+      bin.addEventListener("click", async function() {
         // Suppression de l'imageWrapper parent
         imageWrapper.remove();
+      
+        // Envoi d'une requête DELETE pour supprimer l'image
+        const response = await fetch(`http://localhost:5678/api/works/${work.id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${Auth.token}`
+          }
+        });
+      
+        // Vérification de la réponse du serveur
+        if (!response.ok) {
+          throw new Error("Impossible de supprimer l'image");
+        }
+      
+        console.log("Image supprimée avec succès");
       });
+
 
       document.querySelector(".remove-gallery")
       .addEventListener("click", function() {
@@ -58,10 +75,10 @@ btnModal.addEventListener("click", event =>{
         imageWrapper.remove();
       });
 
-      
+      */
       }
 })  
-
+}
 function closeModal() {
   modal.style.display = "none";
 
@@ -85,3 +102,12 @@ modal.addEventListener("click", function(event) {
   }
 });
 
+
+//modal 2
+modaleAdd = document.querySelector("#modale2")
+const btnAdd = document.querySelector(".add-image")
+
+btnAdd.addEventListener("click", event=>{
+  event.preventDefault
+  modaleAdd.style.display=""
+})
