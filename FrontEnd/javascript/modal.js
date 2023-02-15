@@ -1,11 +1,11 @@
 import { getWorks } from './works.js';
 const Auth = JSON.parse(localStorage.getItem("Auth"));
-
+//
 const publishButton = document.querySelector(".publier");
 const btnModal = document.querySelector("#modal-mod");
 const modal = document.querySelector('#modal');
 const gallery = document.querySelector(".gallery-modal");
-
+//
 let works = [];
 let selectedWorks = [];
 
