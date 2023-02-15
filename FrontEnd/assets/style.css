@@ -364,12 +364,12 @@ footer nav ul {
 }
 
 
-.mode-edition p:nth-child(2){
+.mode-edition button{
 	padding: 11px 23px;	
 	font-family: 'Work Sans';
 	background-color: white;
 	border-radius: 60px;
-
+	border:none;
 	cursor: pointer;
 }
 
