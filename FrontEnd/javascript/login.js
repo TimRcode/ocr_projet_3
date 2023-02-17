@@ -44,6 +44,7 @@ const loginSubmit = document.querySelector("form")
             errorMessage.innerHTML = error.message;
             document.querySelector("div").prepend(errorMessage);
         }
+
     });
 
 
@@ -53,8 +54,9 @@ const Auth = JSON.parse(localStorage.getItem('Auth'))
 
 //Condition si  "Auth" et le token sont true alors là condition est exécuté
 if ( Auth && Auth.token) {
+        const loginButton = document.querySelector(".login");
 
-    const loginButton = document.querySelector(".login");
+
 
     loginButton.innerHTML = `<a href="#">logout</a>`;
     loginButton.classList.replace("login", "logout");
@@ -73,7 +75,7 @@ const logout = document.querySelector(".logout");
 
 if (logout) { 
     logout.addEventListener("click", function(event) {
-        event.preventDefault
+
         const editors = document.querySelectorAll(".hide-edition");
         for(let editor of editors){
             editor.remove()
@@ -86,4 +88,5 @@ if (logout) {
     logout.innerHTML = `<a href="login.html">login</a>`;
     logout.classList.replace("logout", "login");
     })
+
 }

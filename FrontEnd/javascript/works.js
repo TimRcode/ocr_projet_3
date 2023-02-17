@@ -1,5 +1,6 @@
 
 
+
 //Stock API
 const apiWorks = 'http://localhost:5678/api/works';
 const apiCategories = 'http://localhost:5678/api/categories';
@@ -25,6 +26,8 @@ async function getCategories() {
 //Gallery display in the DOM
  function displayWorks(dataWorks){
     const gallery = document.querySelector(".gallery")
+    gallery.innerHTML = ""; // Supprime tous les éléments enfants de la galerie
+
     for(let work of dataWorks){
         const figure = document.createElement('figure')
         
@@ -38,7 +41,9 @@ async function getCategories() {
         gallery.appendChild(figure)
         figure.appendChild(img)
         figure.appendChild(figCaption)
+        
     }   
+    
     
 }
 
@@ -73,10 +78,10 @@ displayWorks(works)
 displayCategories(categories)
 
 
-
 //Add click for "Tous"
 const all = document.getElementById("btn-all");
-all.addEventListener("click", function() {
+all.addEventListener("click", function(event) {
+    event.preventDefault()
     document.querySelector('.gallery').innerHTML = "";
     
     displayWorks(works);
@@ -88,7 +93,7 @@ all.addEventListener("click", function() {
 const listApi = document.querySelectorAll('.cat-api');
 for(let list of listApi){
     list.addEventListener('click', function(event){
-        event.preventDefault(event) 
+        event.preventDefault();
         
             //filtre chaque id de catégories qui correspond à l'id des projets
             const filterWorks = works.filter(work => work.category.id == list.id);
@@ -102,7 +107,8 @@ for(let list of listApi){
 //Loop so that when you click on it, the bottom stays on and comes off
 const onClick = document.querySelectorAll('.btn-cat')
    for ( let allCat of onClick){
-        allCat.addEventListener('click', function(){
+        allCat.addEventListener('click', function(event){
+            event.preventDefault();
                 for(let allCatRemove of onClick){
                     allCatRemove.classList.remove('active')
                 }
@@ -110,5 +116,4 @@ const onClick = document.querySelectorAll('.btn-cat')
             })
 }
 
-
-
+   
