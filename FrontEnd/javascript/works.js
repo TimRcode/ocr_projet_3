@@ -10,7 +10,8 @@ const apiCategories = 'http://localhost:5678/api/categories';
 export async function getWorks() {
     const response = await fetch(apiWorks);
     const works = await response.json();
-    return works ;
+    return works;
+
 
 }
 
@@ -24,11 +25,11 @@ async function getCategories() {
 
 
 //Gallery display in the DOM
- function displayWorks(dataWorks){
+ export function displayWorks(dworks){
     const gallery = document.querySelector(".gallery")
     gallery.innerHTML = ""; // Supprime tous les éléments enfants de la galerie
 
-    for(let work of dataWorks){
+    for(let work of dworks){
         const figure = document.createElement('figure')
         
         const img = document.createElement('img')

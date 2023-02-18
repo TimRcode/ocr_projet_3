@@ -1,5 +1,6 @@
 //fichier works.js
 import { getWorks } from './works.js';
+ import { displayWorks } from './works.js';
 // données de la clée de connexion
 const Auth = JSON.parse(localStorage.getItem("Auth"));
 
@@ -10,13 +11,14 @@ const btnModal = document.querySelector("#modal-mod");
 const modal = document.querySelector('#modal');
 const gallery = document.querySelector(".gallery-modal");
 
-let works = await getWorks();
 let selectedWorks = [];
-  
+const works = await getWorks();
+
+
 
 async function refreshWorks() {
  
-  selectedWorks = [];
+
   gallery.innerHTML = "";
   for (const work of works) {
     const imageWrapper = document.createElement('div');
@@ -53,7 +55,6 @@ async function refreshWorks() {
   }
 }
 
-//
 
 
 
@@ -77,23 +78,30 @@ if (Auth && Auth.token) {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${Auth.token}`
         }
+        
       });
       if (response.ok) {
-        
-        console.log(`Travail ${id} supprimé`);
-       
+        const index = works.findIndex(work => work.id === id);
+        if (index !== -1) {
+          works.splice(index, 1);
+        }
+      closeModal();
       } else {
         console.error(`Erreur lors de la suppression du travail ${id}`);
       }
-      
-      closeModal();
-
+        
+ refreshWorks();
+ 
     }
+    const updatedWorks = await getWorks();
+
+  // Affiche les éléments restants
+  displayWorks(updatedWorks);
   
   });
-  
+      
+ 
 }  
-
 
 
 
