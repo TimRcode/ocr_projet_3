@@ -1,35 +1,26 @@
-
-
-
-//Stock API
+//URLs des API
 const apiWorks = 'http://localhost:5678/api/works';
 const apiCategories = 'http://localhost:5678/api/categories';
 
-
-// recupère les données
+//Récupére les données des œuvres depuis l'API
 export async function getWorks() {
     const response = await fetch(apiWorks);
-    const works = await response.json();
-    return works;
-
-
+    const dataWorks = await response.json();
+    return dataWorks;
 }
-
+//Récupére les données des catégories depuis l'API
 async function getCategories() {
     const response = await fetch(apiCategories);
-    const categories = await response.json();
-    return categories;
+    const dataCategories = await response.json();
+    return dataCategories;
 }
 
-
-
-
-//Gallery display in the DOM
- export function displayWorks(dworks){
+//Affiche les oeuvres dans la galerie
+export function displayWorks(works){
     const gallery = document.querySelector(".gallery")
-    gallery.innerHTML = ""; // Supprime tous les éléments enfants de la galerie
+    gallery.innerHTML = "";
 
-    for(let work of dworks){
+    for(let work of works){
         const figure = document.createElement('figure')
         
         const img = document.createElement('img')
@@ -42,14 +33,10 @@ async function getCategories() {
         gallery.appendChild(figure)
         figure.appendChild(img)
         figure.appendChild(figCaption)
-        
     }   
-    
-    
 }
 
-
-//Categories display in the DOM
+//Affiche les catégories
 function displayCategories(categories) {
     const ul = document.createElement("ul")
 
@@ -72,32 +59,31 @@ function displayCategories(categories) {
     }
 }
 
-let works = await getWorks()
-let categories = await getCategories()
+//Récupèrent les données de l'API et stock le résultat dans une variable
+let dWorks = await getWorks()
+let dCategories = await getCategories()
 
-displayWorks(works)
-displayCategories(categories)
+//Affichent les données de l'API utilisant les données du paramètre 
+displayWorks(dWorks)
+displayCategories(dCategories)
 
 
-//Add click for "Tous"
+//Affiche toutes les oeuvres en cliquant sur le bouton "tous"
 const all = document.getElementById("btn-all");
 all.addEventListener("click", function(event) {
     event.preventDefault()
     document.querySelector('.gallery').innerHTML = "";
     
-    displayWorks(works);
-    
-   
+    displayWorks(dWorks);
 })
 
-//Add click for other categories
+//Affiche les oeuvres de la catégories sélectionnée
 const listApi = document.querySelectorAll('.cat-api');
 for(let list of listApi){
     list.addEventListener('click', function(event){
         event.preventDefault();
         
-            //filtre chaque id de catégories qui correspond à l'id des projets
-            const filterWorks = works.filter(work => work.category.id == list.id);
+            const filterWorks = dWorks.filter(work => work.category.id == list.id);
             
             document.querySelector('.gallery').innerHTML=""
             displayWorks(filterWorks)
@@ -105,9 +91,9 @@ for(let list of listApi){
 }
 
 
-//Loop so that when you click on it, the bottom stays on and comes off
+//Permet d'ajouter le fond de couleur au bouton sélectionnée uniquement
 const onClick = document.querySelectorAll('.btn-cat')
-   for ( let allCat of onClick){
+for ( let allCat of onClick){
         allCat.addEventListener('click', function(event){
             event.preventDefault();
                 for(let allCatRemove of onClick){
@@ -117,4 +103,3 @@ const onClick = document.querySelectorAll('.btn-cat')
             })
 }
 
-   

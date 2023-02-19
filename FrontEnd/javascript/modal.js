@@ -1,24 +1,19 @@
-//fichier works.js
+//Importation des modules
 import { getWorks } from './works.js';
- import { displayWorks } from './works.js';
-// données de la clée de connexion
-const Auth = JSON.parse(localStorage.getItem("Auth"));
+import { displayWorks } from './works.js';
 
-
-//DOM
+const gallery = document.querySelector(".gallery-modal");
 const publishButton = document.querySelector(".publier");
 const btnModal = document.querySelector("#modal-mod");
 const modal = document.querySelector('#modal');
-const gallery = document.querySelector(".gallery-modal");
 
-let selectedWorks = [];
+//Récupération des oeuvres
 const works = await getWorks();
 
+let selectedWorks = [];
 
 
 async function refreshWorks() {
- 
-
   gallery.innerHTML = "";
   for (const work of works) {
     const imageWrapper = document.createElement('div');
@@ -45,89 +40,76 @@ async function refreshWorks() {
     imageWrapper.appendChild(editor);
     imageWrapper.appendChild(enlarge);
     gallery.appendChild(imageWrapper);
-
+    //Suppression de l'oeuvre de la modal
     bin.addEventListener("click", event => {
       event.preventDefault()
+      //Ajoute l'oeuvre supprimer au tableau
       selectedWorks.push(work.id);
+
       imageWrapper.remove();
-      
     });
   }
 }
 
 
 
-
+const Auth = JSON.parse(localStorage.getItem("Auth"));
+// Vérifier que l'utilisateur est authentifié
 if (Auth && Auth.token) {
   btnModal.addEventListener("click", event => {
     event.preventDefault();
     modal.style.display = "";
     refreshWorks();
-    
-    
   });
 
-  
+  //
   publishButton.addEventListener("click", async function (e){
-   e.preventDefault()
-   
+    e.preventDefault()
+    //Pour chaque oeuvre sélectionnée, envoyer une requête DELETE au serveur
     for (const id of selectedWorks) {
       const response = await fetch(`http://localhost:5678/api/works/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${Auth.token}`
+          "Authorization": `Auth ${Auth.token}`
         }
-        
       });
       if (response.ok) {
         const index = works.findIndex(work => work.id === id);
         if (index !== -1) {
           works.splice(index, 1);
         }
-      closeModal();
+      console.log(` suppression du travail ${id}`);
       } else {
         console.error(`Erreur lors de la suppression du travail ${id}`);
       }
-        
- refreshWorks();
- 
+    refreshWorks();
     }
-    const updatedWorks = await getWorks();
-
-  // Affiche les éléments restants
-  displayWorks(updatedWorks);
-  
+  displayWorks(works);
   });
-      
- 
 }  
-
-
 
 function closeModal(){
   modal.style.display = "none";
+    selectedWorks = [];
 }
 
 const closeButton = document.querySelector("#modal .close");
 closeButton.addEventListener("click", event=>{
-  event.preventDefault()
-
-  closeModal() 
-});
-
-document.addEventListener("keydown", function(event) {
-  event.preventDefault()
-  if (event.key === "Escape") {
-    closeModal();
-
-  }
+  event.preventDefault();
+  closeModal();
 });
 
 modal.addEventListener("click", function(event) {
   event.preventDefault()
   if (event.target === modal) {
     closeModal();
+  }
+});
 
+document.addEventListener("keydown", function(event) {
+  event.preventDefault()
+  if (event.key === "Escape") {
+    closeModal();
   }
 });
