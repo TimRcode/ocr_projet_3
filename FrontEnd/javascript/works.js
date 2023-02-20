@@ -41,16 +41,18 @@ function displayCategories(categories) {
     const ul = document.createElement("ul")
 
     const all = document.createElement("li")
-    all.setAttribute("id", "btn-all")
-    all.setAttribute("class", "btn-cat active")
     all.innerText = "Tous"
+    all.setAttribute("id", "btn-all")
+    all.classList.add("btn-cat")
+    all.classList.add("active")
     
     for(let categorie of categories){
         const categories = document.querySelector(".categories")
         
         const li = document.createElement("li")
         li.setAttribute("id", categorie.id)
-        li.setAttribute("class", "btn-cat cat-api")
+        li.classList.add("btn-cat")
+        li.classList.add("cat-api")
         li.innerText = categorie.name
 
         categories.appendChild(ul)

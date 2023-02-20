@@ -406,6 +406,7 @@ footer nav ul {
 
 
 #modal{
+
 		position: fixed;
 		left: 0;
 		top: 0;
@@ -504,7 +505,7 @@ footer nav ul {
 	border-top: 1px solid #B3B3B3;
 }
 
-#modal .add-image{
+#modal #add-image{
 	font-family: "Syne";
 	font-weight: 700;
 	font-size: 14px;
@@ -532,3 +533,32 @@ footer nav ul {
 
 /*Modal post*/
 
+#modal-post{
+	position: fixed;
+	left: 0;
+	top: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	width: 100%;
+	height: 100%;
+
+	background: rgba(0,0,0,0.3); 
+}
+
+.add-wrapper{
+	position: relative;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	padding: 50px 100px;
+	max-width: 630px;
+	
+	border-radius: 10px;
+	background-color: white;
+}

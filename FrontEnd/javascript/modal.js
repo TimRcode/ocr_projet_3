@@ -2,6 +2,8 @@
 import { getWorks } from './works.js';
 import { displayWorks } from './works.js';
 
+//MODAL DELETE
+
 const gallery = document.querySelector(".gallery-modal");
 const publishButton = document.querySelector(".publier");
 const btnModal = document.querySelector("#modal-mod");
@@ -71,34 +73,40 @@ if (Auth && Auth.token) {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Auth ${Auth.token}`
+          "Authorization": `Bearer ${Auth.token}`
         }
       });
       if (response.ok) {
         const index = works.findIndex(work => work.id === id);
+        console.log(index)
         if (index !== -1) {
           works.splice(index, 1);
         }
+      closeModal()
       console.log(` suppression du travail ${id}`);
       } else {
         console.error(`Erreur lors de la suppression du travail ${id}`);
       }
-    refreshWorks();
     }
   displayWorks(works);
   });
 }  
 
+//fonction pour fermer la modal
 function closeModal(){
   modal.style.display = "none";
+  modalPost.style.display = "none";
     selectedWorks = [];
 }
 
-const closeButton = document.querySelector("#modal .close");
-closeButton.addEventListener("click", event=>{
+const closeButton = document.querySelectorAll(".close");
+for(let a of closeButton){
+a.addEventListener("click", event=>{
   event.preventDefault();
   closeModal();
 });
+}
+
 
 modal.addEventListener("click", function(event) {
   event.preventDefault()
@@ -107,9 +115,32 @@ modal.addEventListener("click", function(event) {
   }
 });
 
+
+
+
 document.addEventListener("keydown", function(event) {
   event.preventDefault()
   if (event.key === "Escape") {
     closeModal();
   }
 });
+
+
+//MODAL POST
+
+const addImage = document.querySelector("#add-image")
+const modalPost = document.querySelector("#modal-post")
+
+addImage.addEventListener("click" ,event =>{
+  event.preventDefault
+  modalPost.style.display="";
+  modal.style.display="none";
+
+})
+modalPost.addEventListener("click", function(event) {
+  event.preventDefault()
+  if (event.target === modalPost) {
+    closeModal();
+  }
+});
+

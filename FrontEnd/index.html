@@ -87,7 +87,7 @@
 		</ul>
 	</nav>
 </footer>
-<button class="publier"> publier les changments</button>
+
 
 <!-------------------------------------Modale-delete------------------------------------------->
 
@@ -102,13 +102,43 @@
 		<hr>
 
 
-		<button class="add-image">Ajouter une photo</button>
+		<button id="add-image">Ajouter une photo</button>
 		<button class="remove-gallery">Supprimer la galerie</button>
 	</div>
 
 </aside>
 
+<aside id="modal-post" aria-hidden="true" style="display: none;">
+	<div class="add-wrapper">
+		<img class="close" src="assets/icons/close1.png" alt="close" >
+		<img src="assets/icons/Arrow_Back.png" alt="" class="arrow-back">
+		<h1>Ajout photo</h1>
+		<form method="post" enctype="multipart/form-data">
+		<div>
+			<img src="assets/icons/img-vide.png" alt="">
+			<label for="file-input" class="custom-file-upload">
+				+ Ajouter photo
+				<input id="file-input" type="file"  
+						accept=".jpg, .png" style="opacity: 0;"/>
+			</label>
+			
+			
+			<span>jpg, png : 4mo max</span>
+		</div>
 
+		<label for="title">Titre</label>
+		<input type="text" id="title-add" required>
+
+		<label for="category">Catégorie</label>
+		<select name="pets" id="pet-select">
+			<option value=""></option>
+		</select>
+		
+			
+		</form>
+	</div>
+
+</aside>
 
 
 </body>
