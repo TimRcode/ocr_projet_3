@@ -9,7 +9,7 @@ export async function getWorks() {
     return dataWorks;
 }
 //Récupére les données des catégories depuis l'API
-async function getCategories() {
+export async function getCategories() {
     const response = await fetch(apiCategories);
     const dataCategories = await response.json();
     return dataCategories;

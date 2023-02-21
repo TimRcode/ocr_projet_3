@@ -1,6 +1,10 @@
+
+
+
 //Importation des modules
 import { getWorks } from './works.js';
 import { displayWorks } from './works.js';
+import { getCategories } from './works.js';
 
 //MODAL DELETE
 
@@ -11,7 +15,7 @@ const modal = document.querySelector('#modal');
 
 //Récupération des oeuvres
 const works = await getWorks();
-
+const categories = await getCategories();
 let selectedWorks = [];
 
 
@@ -119,7 +123,7 @@ modal.addEventListener("click", function(event) {
 
 
 document.addEventListener("keydown", function(event) {
-  event.preventDefault()
+  
   if (event.key === "Escape") {
     closeModal();
   }
@@ -127,20 +131,36 @@ document.addEventListener("keydown", function(event) {
 
 
 //MODAL POST
-
+const backArrow = document.querySelector(".arrow-back")
 const addImage = document.querySelector("#add-image")
 const modalPost = document.querySelector("#modal-post")
 
 addImage.addEventListener("click" ,event =>{
   event.preventDefault
+  
   modalPost.style.display="";
   modal.style.display="none";
 
 })
+
+
+
+
+
+
+
+
+
 modalPost.addEventListener("click", function(event) {
-  event.preventDefault()
   if (event.target === modalPost) {
     closeModal();
   }
 });
 
+
+backArrow.addEventListener("click", event =>{
+  event.preventDefault()
+  
+  modalPost.style.display="none"
+  modal.style.display=""
+})

@@ -12,8 +12,8 @@ const loginSubmit = document.querySelector("form")
 
         //récupération des valeurs des inputs
         const login = {
-            email: document.querySelector("[name=email]").value,
-            password: document.querySelector("[name=password]").value
+            email: document.querySelector(".login-name").value,
+            password: document.querySelector(".login-pass").value
         };
         
         try {

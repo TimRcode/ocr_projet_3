@@ -17,7 +17,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video  {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -240,7 +240,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+#contact input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -556,9 +556,50 @@ footer nav ul {
 	justify-content: center;
 	align-items: center;
 
-	padding: 50px 100px;
+	padding: 55px 100px;
 	max-width: 630px;
+	height: 670px;
 	
 	border-radius: 10px;
 	background-color: white;
+}
+
+.add-wrapper .close{
+	position: absolute;
+	top: 32px;
+	right: 32px;
+
+	height: 12px;
+	object-fit: cover;
+}
+
+.add-wrapper .arrow-back{
+	position: absolute;
+	top: 32px;
+	left: 32px;
+
+	height: 14px;
+	object-fit: cover;
+}
+
+.add-wrapper h1{
+	font-family: "work Sans";
+	font-size: 26px;
+	color: black;
+}
+
+.add-wrapper .label-image{
+	max-width: 420px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #E8F1F6;
+	height: 169px;
+}
+
+
+.add-wrapper input{
+	padding: 20px;
+	color: black;
 }

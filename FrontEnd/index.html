@@ -80,6 +80,7 @@
 	</section>
 </main>
 
+
 <footer>
 	<nav>
 		<ul>
@@ -114,27 +115,22 @@
 		<img src="assets/icons/Arrow_Back.png" alt="" class="arrow-back">
 		<h1>Ajout photo</h1>
 		<form method="post" enctype="multipart/form-data">
-		<div>
-			<img src="assets/icons/img-vide.png" alt="">
-			<label for="file-input" class="custom-file-upload">
-				+ Ajouter photo
-				<input id="file-input" type="file"  
-						accept=".jpg, .png" style="opacity: 0;"/>
+			<label class="label-image" for="file-input" class="custom-file-upload">
+				<img src="assets/icons/img-vide.png" alt="">
+				<p>+ Ajouter photo</p>
+				<input id="file-input" type="file" accept=".jpg, .png" style="display: none;"/>
+				<span>jpg, png : 4mo max</span>
 			</label>
-			
-			
-			<span>jpg, png : 4mo max</span>
-		</div>
 
-		<label for="title">Titre</label>
-		<input type="text" id="title-add" required>
 
-		<label for="category">Catégorie</label>
-		<select name="pets" id="pet-select">
-			<option value=""></option>
-		</select>
-		
+			<label for="title">Titre</label>
+			<input type="text" name="title">
+
+			<label for="categories">Catégorie</label>
+			<select name="categories" id="select-categories">
 			
+			</select>
+			<button type="submit"> Valider</button>
 		</form>
 	</div>
 
