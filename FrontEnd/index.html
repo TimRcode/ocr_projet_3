@@ -106,31 +106,48 @@
 		<button id="add-image">Ajouter une photo</button>
 		<button class="remove-gallery">Supprimer la galerie</button>
 	</div>
-
 </aside>
 
+
+<!-------------------------------------Modale-post------------------------------------------->
+<!------>
+
 <aside id="modal-post" aria-hidden="true" style="display: none;">
+	
 	<div class="add-wrapper">
+		
 		<img class="close" src="assets/icons/close1.png" alt="close" >
 		<img src="assets/icons/Arrow_Back.png" alt="" class="arrow-back">
 		<h1>Ajout photo</h1>
-		<form method="post" enctype="multipart/form-data">
-			<label class="label-image" for="file-input" class="custom-file-upload">
-				<img src="assets/icons/img-vide.png" alt="">
+		<form method="post" enctype="multipart/form-data" id="form-post">
+			<label class="label-image" for="file-input">
+				<img id="image-preview" src="assets/icons/img-vide.png" alt="">
 				<p>+ Ajouter photo</p>
 				<input id="file-input" type="file" accept=".jpg, .png" style="display: none;"/>
 				<span>jpg, png : 4mo max</span>
 			</label>
 
+			<div class="tilte-cat-button">
+				<label for="title">Titre</label>
+				<input type="text" name="title">
 
-			<label for="title">Titre</label>
-			<input type="text" name="title">
+				<label for="categories">Catégorie</label>
 
-			<label for="categories">Catégorie</label>
-			<select name="categories" id="select-categories">
-			
-			</select>
-			<button type="submit"> Valider</button>
+				<div class="select-menu">
+					<div class="select-btn">
+						<span class="default-span">fff</span>
+						<img src="assets/icons/arrow-categories.png" alt="">
+					</div>
+
+					<ul>
+					</ul>
+				</div>
+				
+
+				<hr>
+
+				<button type="submit"> Valider</button>
+			</div>
 		</form>
 	</div>
 

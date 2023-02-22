@@ -499,7 +499,7 @@ footer nav ul {
 	object-fit: cover;
 }
 
-#modal hr{
+hr{
 	width: 420px;
 	margin-bottom: 40px;
 	border-top: 1px solid #B3B3B3;
@@ -553,13 +553,13 @@ footer nav ul {
 	
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	
 	align-items: center;
 
 	padding: 55px 100px;
-	max-width: 630px;
+	width: 630px;
 	height: 670px;
-	
+	gap: 10px 0;
 	border-radius: 10px;
 	background-color: white;
 }
@@ -586,20 +586,80 @@ footer nav ul {
 	font-family: "work Sans";
 	font-size: 26px;
 	color: black;
+	margin-bottom:36px ;
 }
 
 .add-wrapper .label-image{
-	max-width: 420px;
+	width: 420px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	background-color: #E8F1F6;
 	height: 169px;
+	margin-bottom: 30px;
+	position:relative;
+	
 }
 
 
 .add-wrapper input{
-	padding: 20px;
+	height: 51px;
 	color: black;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border: none;
+	appearance: none;
+	outline: none;
+	padding: 18px 16px;
+	margin-bottom: 21px;
 }
+
+#form-post .tilte-cat-button{
+	display: flex;
+	flex-direction: column;
+}
+
+
+#form-post div label{
+	margin-bottom:10px ;
+}
+
+
+
+#form-post .select-menu{
+	width: 420px;
+	margin-bottom: 47px;
+	
+}
+.select-btn{
+		color: black;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border: none;
+	appearance: none;
+	outline: none;
+	padding: 18px 16px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	}
+
+	.select-menu ul{
+		position: relative;
+		padding: 17px;
+		display: none;
+	}
+
+	.select-menu.active ul{
+		display: block;
+	}
+
+	.select-menu ul li{
+		display: flex;
+	}
+
+	.select-menu ul li:hover{
+		background-color: #f2f2f2;
+		color: black;
+	}
+
+

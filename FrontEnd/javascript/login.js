@@ -1,5 +1,6 @@
 
-const loginSubmit = document.querySelector("form")
+const loginSubmit = document.querySelector("#form-login")
+if(loginSubmit){
     loginSubmit.addEventListener("submit", async function(event) {
 
         event.preventDefault();
@@ -47,7 +48,7 @@ const loginSubmit = document.querySelector("form")
 
     });
 
-
+}
 //Récupération de la clé "Auth"
 //JSON.parse convertit la chaîne de caractères au format JSON en un objet JavaScript
 const Auth = JSON.parse(localStorage.getItem('Auth'))

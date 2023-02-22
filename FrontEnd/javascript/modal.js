@@ -134,14 +134,75 @@ document.addEventListener("keydown", function(event) {
 const backArrow = document.querySelector(".arrow-back")
 const addImage = document.querySelector("#add-image")
 const modalPost = document.querySelector("#modal-post")
+const ulMenu = document.querySelector(".select-menu ul")
 
-addImage.addEventListener("click" ,event =>{
-  event.preventDefault
-  
+const optionMenu = document.querySelector(".select-menu")
+
+
+addImage.addEventListener("click" , event =>{
+  event.preventDefault()
+  ulMenu.innerHTML=""
   modalPost.style.display="";
   modal.style.display="none";
+  for(let categorie of categories){
+    
+    const li = document.createElement('li')
+    li.classList.add("option")
+    const span = document.createElement('span')
+    span.classList.add("text-option")
+    span.innerText = categorie.name;
+
+    ulMenu.appendChild(li)
+    li.appendChild(span)
+  }
+
+const selectBtn = document.querySelector(".select-btn")
+const options = document.querySelectorAll(".select-menu ul li")
+const btnspan= document.querySelector(".default-span")
+console.log(options)
+
+
+selectBtn.addEventListener("click", ()=>{
+  optionMenu.classList.toggle("active")
+})
+
+
+options.forEach(option => {
+  
+  option.addEventListener("click",()=>{
+
+    
+    console.log("Option clicked!");
+    console.log(option)
+    let selectedOption = option.querySelector('.text-option').innerText;
+    btnspan.innerText = selectedOption;
+    optionMenu.classList.remove("active")
+    console.log(selectedOption)
+
+  })
+});
+
+const fileInput = document.querySelector('#file-input');
+const imagePreview = document.querySelector('#image-preview');
+
+fileInput.addEventListener('change', () => {
+  const file = fileInput.files[0];
+  const url = URL.createObjectURL(file);
+  imagePreview.src = url;
+  
+});
+
+
+
 
 })
+
+
+
+
+
+
+
 
 
 
