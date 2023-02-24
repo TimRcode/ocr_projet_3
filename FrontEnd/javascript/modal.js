@@ -96,25 +96,125 @@ if (Auth && Auth.token) {
   });
 }  
 
+
+
+
+
+
+
+
+
+
+
+//MODAL POST
+
+
+const openModalPost = document.querySelector("#add-image")
+const modalPost = document.querySelector("#modal-post")
+
+const fileInput = document.getElementById('file-input');
+const imagePreview = document.getElementById('image-preview');
+
+
+
+
+
+
+openModalPost.addEventListener("click" , event =>{
+      event.preventDefault()
+      modalPost.style.display="";
+      modal.style.display="none";
+
+      fileInput.addEventListener('change', (event) => {
+        
+        const file = event.target.files[0];
+        if (file) {
+          imagePreview.style.display="";
+          const fileSize = file.size / 1024 / 1024; // Conversion de la taille en Mo
+          if (fileSize > 4) {
+            alert('Le fichier sélectionné est trop volumineux. Veuillez sélectionner un fichier de moins de 4 Mo.');
+          } else {
+            const imageUrl = URL.createObjectURL(file);
+            imagePreview.src = imageUrl;
+          }
+        }
+      });
+
+      
+
+})
+
+
+      const form = document.getElementById('form-post');
+      form.addEventListener('submit', async function(event) {
+        event.preventDefault(); 
+      
+        const title = document.getElementById('form-title').value;
+        const category = document.getElementById('categories-form').value;
+        const imageFile = document.getElementById('file-input').files[0];
+      console.log(imageFile)
+
+      const formData = new FormData();
+        formData.append('title', title);
+        formData.append('category', category);
+        formData.append('imageUrl', imageFile);
+      console.log(formData)
+
+      const response = await fetch("http://localhost:5678/api/works", {
+          method: 'POST',
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "Authorization": `Bearer ${Auth.token}`
+        },
+          body: formData
+        });
+        
+      
+        if (response.ok) {
+          const dataWorks = await getWorks();
+          displayWorks(dataWorks);
+        }
+      });
+
+
+
+
+
+
+
+
 //fonction pour fermer la modal
 function closeModal(){
   modal.style.display = "none";
   modalPost.style.display = "none";
-    selectedWorks = [];
+  fileInput.value = ''; // Réinitialiser le champ input-file
+  imagePreview.style.display = 'none'; // Masquer l'aperçu de l'image
+  
+  selectedWorks = [];
 }
 
 const closeButton = document.querySelectorAll(".close");
-for(let a of closeButton){
-a.addEventListener("click", event=>{
+for(let cross of closeButton){
+cross.addEventListener("click", event=>{
   event.preventDefault();
+  fileInput.value = ''; // Réinitialiser le champ input-file
+  imagePreview.style.display = 'none'; // Masquer l'aperçu de l'image
   closeModal();
+
 });
 }
+
+
+
+
+
+
 
 
 modal.addEventListener("click", function(event) {
   event.preventDefault()
   if (event.target === modal) {
+    
     closeModal();
   }
 });
@@ -125,103 +225,33 @@ modal.addEventListener("click", function(event) {
 document.addEventListener("keydown", function(event) {
   
   if (event.key === "Escape") {
+
     closeModal();
   }
 });
 
 
-//MODAL POST
+
+
+
+
+
 const backArrow = document.querySelector(".arrow-back")
-const addImage = document.querySelector("#add-image")
-const modalPost = document.querySelector("#modal-post")
-const ulMenu = document.querySelector(".select-menu ul")
-
-const optionMenu = document.querySelector(".select-menu")
-
-
-addImage.addEventListener("click" , event =>{
-  event.preventDefault()
-  ulMenu.innerHTML=""
-  modalPost.style.display="";
-  modal.style.display="none";
-  for(let categorie of categories){
-    
-    const li = document.createElement('li')
-    li.classList.add("option")
-    const span = document.createElement('span')
-    span.classList.add("text-option")
-    span.innerText = categorie.name;
-
-    ulMenu.appendChild(li)
-    li.appendChild(span)
-  }
-
-const selectBtn = document.querySelector(".select-btn")
-const options = document.querySelectorAll(".select-menu ul li")
-const btnspan= document.querySelector(".default-span")
-console.log(options)
-
-
-selectBtn.addEventListener("click", ()=>{
-  optionMenu.classList.toggle("active")
-})
-
-
-options.forEach(option => {
-  
-  option.addEventListener("click",()=>{
-
-    
-    console.log("Option clicked!");
-    console.log(option)
-    let selectedOption = option.querySelector('.text-option').innerText;
-    btnspan.innerText = selectedOption;
-    optionMenu.classList.remove("active")
-    console.log(selectedOption)
-
-  })
-});
-
-const fileInput = document.querySelector('#file-input');
-const imagePreview = document.querySelector('#image-preview');
-
-fileInput.addEventListener('change', () => {
-  const file = fileInput.files[0];
-  const url = URL.createObjectURL(file);
-  imagePreview.src = url;
-  
-});
-
-
-
-
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 modalPost.addEventListener("click", function(event) {
   if (event.target === modalPost) {
+    
     closeModal();
   }
 });
 
 
 backArrow.addEventListener("click", event =>{
-  event.preventDefault()
   
+  event.preventDefault()
+  fileInput.value = ''; // Réinitialiser le champ input-file
+  imagePreview.style.display = 'none'; // Masquer l'aperçu de l'image
   modalPost.style.display="none"
   modal.style.display=""
 })

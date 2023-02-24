@@ -120,8 +120,9 @@
 		<img src="assets/icons/Arrow_Back.png" alt="" class="arrow-back">
 		<h1>Ajout photo</h1>
 		<form method="post" enctype="multipart/form-data" id="form-post">
-			<label class="label-image" for="file-input">
-				<img id="image-preview" src="assets/icons/img-vide.png" alt="">
+			<label class="label-image" for="file-input" id="form-img">
+				<img  src="assets/icons/img-vide.png" alt="">
+				<img id="image-preview"  src="" alt="" style="display: none;">
 				<p>+ Ajouter photo</p>
 				<input id="file-input" type="file" accept=".jpg, .png" style="display: none;"/>
 				<span>jpg, png : 4mo max</span>
@@ -129,20 +130,15 @@
 
 			<div class="tilte-cat-button">
 				<label for="title">Titre</label>
-				<input type="text" name="title">
+				<input type="text" name="title" id="form-title">
 
 				<label for="categories">Catégorie</label>
-
-				<div class="select-menu">
-					<div class="select-btn">
-						<span class="default-span">fff</span>
-						<img src="assets/icons/arrow-categories.png" alt="">
-					</div>
-
-					<ul>
-					</ul>
-				</div>
-				
+				<select name="select-categories" id="categories-form" required>
+					<option value=""></option>
+					<option value="1">Objets</option>
+					<option value="2">Appartements</option>
+					<option value="3">Hotels & restaurants</option>
+				</select>
 
 				<hr>
 

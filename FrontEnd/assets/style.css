@@ -631,7 +631,7 @@ hr{
 	margin-bottom: 47px;
 	
 }
-.select-btn{
+.select-field{
 		color: black;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	border: none;
@@ -641,6 +641,7 @@ hr{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	position: relative;
 	}
 
 	.select-menu ul{
@@ -650,6 +651,7 @@ hr{
 	}
 
 	.select-menu.active ul{
+		position: absolute;
 		display: block;
 	}
 
@@ -662,4 +664,7 @@ hr{
 		color: black;
 	}
 
-
+#image-preview{
+	height: 100%;
+	position: absolute;
+}
