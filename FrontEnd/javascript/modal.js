@@ -5,14 +5,12 @@
 import { getWorks } from './works.js';
 import { displayWorks } from './works.js';
 import { getCategories } from './works.js';
-
 //MODAL DELETE
 
 const gallery = document.querySelector(".gallery-modal");
 const publishButton = document.querySelector(".publier");
 const btnModal = document.querySelector("#modal-mod");
 const modal = document.querySelector('#modal');
-
 //Récupération des oeuvres
 const works = await getWorks();
 const categories = await getCategories();
@@ -140,41 +138,60 @@ openModalPost.addEventListener("click" , event =>{
         }
       });
 
-      
-
-})
+      })
 
 
-      const form = document.getElementById('form-post');
+
+
+  const form = document.getElementById('form-post');
       form.addEventListener('submit', async function(event) {
         event.preventDefault(); 
       
         const title = document.getElementById('form-title').value;
         const category = document.getElementById('categories-form').value;
         const imageFile = document.getElementById('file-input').files[0];
-      console.log(imageFile)
 
       const formData = new FormData();
         formData.append('title', title);
         formData.append('category', category);
-        formData.append('imageUrl', imageFile);
-      console.log(formData)
+        formData.append('image', imageFile);
+      
 
       const response = await fetch("http://localhost:5678/api/works", {
           method: 'POST',
         headers: {
-          "Content-Type": "multipart/form-data",
-          "Authorization": `Bearer ${Auth.token}`
+          Authorization: `Bearer ${Auth.token}`
         },
           body: formData
         });
         
       
         if (response.ok) {
-          const dataWorks = await getWorks();
-          displayWorks(dataWorks);
+    
+
+          const all = document.getElementById("btn-all");
+          all.addEventListener("click", function(event) {
+              event.preventDefault()
+              document.querySelector('.gallery').innerHTML = "";
+              
+              displayWorks(works);
+          })
+
+          
+           
+
+
+
+            const newWork = await response.json();
+        
+          works.push(newWork)
+          displayWorks(works);
+          closeModal()
+          
+          
         }
       });
+
 
 
 

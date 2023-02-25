@@ -206,7 +206,8 @@ li:hover, a:hover {
 
 .gallery img {
 	width: 100%;
-
+	height:500px;
+	object-fit: cover;
 }
 #contact {
 	width: 50%;
@@ -461,6 +462,8 @@ footer nav ul {
 
 #modal .image-wrapper img:first-child{
 	width: 100%;
+	height: 104px;
+	object-fit: cover;
 }
 
 #modal .bin{

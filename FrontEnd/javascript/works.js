@@ -37,7 +37,7 @@ export function displayWorks(works){
 }
 
 //Affiche les catégories
-function displayCategories(categories) {
+export function displayCategories(categories) {
     const ul = document.createElement("ul")
 
     const all = document.createElement("li")
@@ -85,8 +85,8 @@ for(let list of listApi){
     list.addEventListener('click', function(event){
         event.preventDefault();
         
-            const filterWorks = dWorks.filter(work => work.category.id == list.id);
-            
+            const filterWorks = dWorks.filter(work => work.category.id == list.id );
+            console.log(filterWorks)
             document.querySelector('.gallery').innerHTML=""
             displayWorks(filterWorks)
             })     
