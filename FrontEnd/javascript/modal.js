@@ -4,7 +4,7 @@
 //Importation des modules
 import { getWorks } from './works.js';
 import { displayWorks } from './works.js';
-import { getCategories } from './works.js';
+
 //MODAL DELETE
 
 const gallery = document.querySelector(".gallery-modal");
@@ -12,14 +12,14 @@ const publishButton = document.querySelector(".publier");
 const btnModal = document.querySelector("#modal-mod");
 const modal = document.querySelector('#modal');
 //Récupération des oeuvres
-const works = await getWorks();
-const categories = await getCategories();
+const dWorks = await getWorks();
+
 let selectedWorks = [];
 
 
 async function refreshWorks() {
   gallery.innerHTML = "";
-  for (const work of works) {
+  for (const work of dWorks) {
     const imageWrapper = document.createElement('div');
     imageWrapper.setAttribute('class', 'image-wrapper');
 
@@ -79,10 +79,33 @@ if (Auth && Auth.token) {
         }
       });
       if (response.ok) {
-        const index = works.findIndex(work => work.id === id);
+        
+
+        const all = document.getElementById("btn-all");
+        all.addEventListener("click", function(event) {
+            event.preventDefault()
+            document.querySelector('.gallery').innerHTML = "";
+            
+            displayWorks(dWorks);
+        })
+        
+        //Affiche les oeuvres de la catégories sélectionnée
+        const listApi = document.querySelectorAll('.cat-api');
+        for(let list of listApi){
+            list.addEventListener('click', function(event){
+                event.preventDefault();
+                
+                    const filterWorks = dWorks.filter(work => work.categoryId == list.id );
+                   
+                    document.querySelector('.gallery').innerHTML=""
+                    displayWorks(filterWorks)
+                    })     
+        }
+        
+        const index = dWorks.findIndex(work => work.id === id);
         console.log(index)
         if (index !== -1) {
-          works.splice(index, 1);
+          dWorks.splice(index, 1);
         }
       closeModal()
       console.log(` suppression du travail ${id}`);
@@ -90,7 +113,7 @@ if (Auth && Auth.token) {
         console.error(`Erreur lors de la suppression du travail ${id}`);
       }
     }
-  displayWorks(works);
+  displayWorks(dWorks);
   });
 }  
 
@@ -150,7 +173,7 @@ openModalPost.addEventListener("click" , event =>{
         const title = document.getElementById('form-title').value;
         const category = document.getElementById('categories-form').value;
         const imageFile = document.getElementById('file-input').files[0];
-
+        console.log(category)
       const formData = new FormData();
         formData.append('title', title);
         formData.append('category', category);
@@ -167,29 +190,50 @@ openModalPost.addEventListener("click" , event =>{
         
       
         if (response.ok) {
-    
+  let newWork = await response.json();
+        
+  dWorks.push(newWork)  
+
 
           const all = document.getElementById("btn-all");
           all.addEventListener("click", function(event) {
               event.preventDefault()
               document.querySelector('.gallery').innerHTML = "";
               
-              displayWorks(works);
+              displayWorks(dWorks);
           })
 
-          
+     
+
+        const listApi = document.querySelectorAll('.cat-api');
+    for(let list of listApi){
+    list.addEventListener('click', function(event){
+        event.preventDefault();
+        
+            const filterWorks = dWorks.filter(work => work.categoryId == list.id );
+            document.querySelector('.gallery').innerHTML=""
+            
+            console.log(filterWorks)
+            displayWorks(filterWorks);
+            
+            })     
+}
            
 
 
-
-            const newWork = await response.json();
-        
-          works.push(newWork)
-          displayWorks(works);
+          
+          displayWorks(dWorks)
           closeModal()
+
+
+
+            
           
           
         }
+
+
+
       });
 
 

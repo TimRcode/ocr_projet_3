@@ -1,22 +1,24 @@
 //URLs des API
+
+
 const apiWorks = 'http://localhost:5678/api/works';
 const apiCategories = 'http://localhost:5678/api/categories';
 
 //Récupére les données des œuvres depuis l'API
-export async function getWorks() {
+async function getWorks() {
     const response = await fetch(apiWorks);
     const dataWorks = await response.json();
     return dataWorks;
 }
 //Récupére les données des catégories depuis l'API
-export async function getCategories() {
+async function getCategories() {
     const response = await fetch(apiCategories);
     const dataCategories = await response.json();
     return dataCategories;
 }
 
 //Affiche les oeuvres dans la galerie
-export function displayWorks(works){
+ function displayWorks(works){
     const gallery = document.querySelector(".gallery")
     gallery.innerHTML = "";
 
@@ -37,7 +39,7 @@ export function displayWorks(works){
 }
 
 //Affiche les catégories
-export function displayCategories(categories) {
+ function displayCategories(categories) {
     const ul = document.createElement("ul")
 
     const all = document.createElement("li")
@@ -69,9 +71,8 @@ let dCategories = await getCategories()
 displayWorks(dWorks)
 displayCategories(dCategories)
 
-
-//Affiche toutes les oeuvres en cliquant sur le bouton "tous"
-const all = document.getElementById("btn-all");
+ 
+    const all = document.getElementById("btn-all");
 all.addEventListener("click", function(event) {
     event.preventDefault()
     document.querySelector('.gallery').innerHTML = "";
@@ -85,12 +86,17 @@ for(let list of listApi){
     list.addEventListener('click', function(event){
         event.preventDefault();
         
-            const filterWorks = dWorks.filter(work => work.category.id == list.id );
-            console.log(filterWorks)
+            const filterWorks = dWorks.filter(work => work.categoryId == list.id );
+           
             document.querySelector('.gallery').innerHTML=""
             displayWorks(filterWorks)
             })     
 }
+
+
+
+//Affiche toutes les oeuvres en cliquant sur le bouton "tous"
+
 
 
 //Permet d'ajouter le fond de couleur au bouton sélectionnée uniquement
@@ -105,3 +111,4 @@ for ( let allCat of onClick){
             })
 }
 
+export{getWorks, displayWorks}
