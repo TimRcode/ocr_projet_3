@@ -597,14 +597,39 @@ hr{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	
 	background-color: #E8F1F6;
 	height: 169px;
 	margin-bottom: 30px;
 	position:relative;
 	
 }
+.add-wrapper .label-image img:first-child{
+	height: 46px;
+	width: 58px;
+	margin-bottom: 21px;
+	margin-top: 28px;
 
+}
+
+
+
+.add-wrapper .label-image p{
+	font-weight: 500;
+	font-size: 14px;
+	margin-bottom: 7px;
+	height: 36px;
+	width: 173px;
+	background: #CBD6DC;
+	border-radius: 50px;
+	color: #306685;
+	padding: 10px 33px;
+}
+
+.add-wrapper .label-image {
+	color: #444;
+	font-size: 10px;
+}
 
 .add-wrapper input{
 	height: 51px;
@@ -634,18 +659,7 @@ hr{
 	margin-bottom: 47px;
 	
 }
-.select-field{
-		color: black;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-	border: none;
-	appearance: none;
-	outline: none;
-	padding: 18px 16px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	position: relative;
-	}
+
 
 	.select-menu ul{
 		position: relative;
@@ -670,4 +684,42 @@ hr{
 #image-preview{
 	height: 100%;
 	position: absolute;
+}
+
+
+#form-post .select{	
+	position: relative;
+	height: 51px;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	margin-bottom: 47px;
+}
+.select img{
+	position: absolute;
+	right: 20px;
+	top: 48%;
+}
+select{
+	width: 100%;
+	border: none;
+	appearance: none;
+	outline: none;
+	padding: 18px 16px;
+
+}
+
+#form-post hr{
+	bottom: 32px;
+}
+
+#form-post button{
+	color: white;
+	font-family: "Syne";
+	font-weight: 700;
+	border: none;
+	border-radius:60px ;
+	size: 14px;
+	
+	width: 237px;
+	height: 36px;
+	align-self: center;
 }

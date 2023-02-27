@@ -113,7 +113,7 @@
 <!-------------------------------------Modale-post------------------------------------------->
 <!------>
 
-<aside id="modal-post" aria-hidden="true" style="display: none;">
+<aside id="modal-post" aria-hidden="true" style="display: none;" >
 	
 	<div class="add-wrapper">
 		
@@ -131,16 +131,19 @@
 
 			<div class="tilte-cat-button">
 				<label for="title">Titre</label>
-				<input type="text" name="title" id="form-title">
+				<input type="text" name="title" id="form-title" required>
 
 				<label for="categories">Catégorie</label>
+				<div class="select">
+										<img src="assets/icons/arrow-categories.png" alt="">
+
 				<select name="select-categories" id="categories-form" required>
 					<option value=""></option>
 					<option value="1">Objets</option>
 					<option value="2">Appartements</option>
 					<option value="3">Hotels & restaurants</option>
 				</select>
-
+				</div>
 				<hr>
 
 				<button type="submit"> Valider</button>

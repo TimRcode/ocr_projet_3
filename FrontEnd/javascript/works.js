@@ -71,14 +71,14 @@ let dCategories = await getCategories()
 displayWorks(dWorks)
 displayCategories(dCategories)
 
- 
+ //Affiche toutes les oeuvres en cliquant sur le bouton "tous"
     const all = document.getElementById("btn-all");
-all.addEventListener("click", function(event) {
-    event.preventDefault()
-    document.querySelector('.gallery').innerHTML = "";
-    
-    displayWorks(dWorks);
-})
+    all.addEventListener("click", function(event) {
+        event.preventDefault()
+        document.querySelector('.gallery').innerHTML = "";
+        
+        displayWorks(dWorks);
+    })
 
 //Affiche les oeuvres de la catégories sélectionnée
 const listApi = document.querySelectorAll('.cat-api');
@@ -95,7 +95,7 @@ for(let list of listApi){
 
 
 
-//Affiche toutes les oeuvres en cliquant sur le bouton "tous"
+
 
 
 
