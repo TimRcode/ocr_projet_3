@@ -718,8 +718,12 @@ select{
 	border: none;
 	border-radius:60px ;
 	size: 14px;
-	
+	background-color: grey;
 	width: 237px;
 	height: 36px;
 	align-self: center;
+}
+
+#form-post button.green-button{
+	background-color: #1D6154;
 }

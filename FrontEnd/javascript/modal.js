@@ -7,7 +7,6 @@ import { displayWorks } from './works.js';
 
 //Récupération des oeuvres
 const dWorks = await getWorks();
-console.log(dWorks)
 //Initialisation d'un tableau pour récupérer les "travaux" au clic de la corbeille
 let selectedWorks = [];
 
@@ -121,7 +120,6 @@ const openModalPost = document.querySelector("#add-image")
 const modalPost = document.querySelector("#modal-post")
 const fileInput = document.getElementById('file-input');
 const p = document.querySelector('#form-img p');
-console.log(p)
 //Ouvre la modal qui permet d'ajouter des travaux
 openModalPost.addEventListener("click" , event =>{
       event.preventDefault()
@@ -151,8 +149,9 @@ openModalPost.addEventListener("click" , event =>{
         const category = document.getElementById('categories-form').value;
         const imageFile = document.getElementById('file-input').files[0];
        
-          
-         
+        
+
+
         if (title.length === 0 || category === '' || !imageFile) {
           console.error('erreur');
           return
@@ -162,6 +161,7 @@ openModalPost.addEventListener("click" , event =>{
         formData.append('title', title);
         formData.append('category', category);
         formData.append('image', imageFile);
+
       
         const response = await fetch("http://localhost:5678/api/works", {
           method: 'POST',
@@ -199,6 +199,48 @@ openModalPost.addEventListener("click" , event =>{
 
 
 //Partie qui permet de fermer les différentes modal
+const a = document.getElementById('form-post');
+const button = document.querySelector("#form-post button");
+
+// function to check if all fields are filled
+function checkFields() {
+  const title = document.getElementById('form-title').value;
+  const category = document.getElementById('categories-form').value;
+  const imageFile = document.getElementById('file-input').files[0];
+  
+  if (title.length === 0 || category === '' || !imageFile) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+// event listener for title field
+document.getElementById('form-title').addEventListener('input', function() {
+  if (checkFields()) {
+    button.classList.add("green-button");
+  } else {
+    button.classList.remove("green-button");
+  }
+});
+
+// event listener for category field
+document.getElementById('categories-form').addEventListener('change', function() {
+  if (checkFields()) {
+    button.classList.add("green-button");
+  } else {
+    button.classList.remove("green-button");
+  }
+});
+
+// event listener for image field
+document.getElementById('file-input').addEventListener('change', function() {
+  if (checkFields()) {
+    button.classList.add("green-button");
+  } else {
+    button.classList.remove("green-button");
+  }
+});
 
 //fonction pour fermer la modal
 function closeModal(){
@@ -208,7 +250,7 @@ function closeModal(){
   fileInput.value = ''; // Réinitialiser le champ input-file
   document.getElementById('form-title').value='';
   document.getElementById('categories-form').value='';
-
+  button.classList.remove("green-button");
   p.style.display=""
   selectedWorks = [];
 }
@@ -255,6 +297,6 @@ backArrow.addEventListener("click", event =>{
   p.style.display=""
   document.getElementById('form-title').value='';
   document.getElementById('categories-form').value='';
-
+  button.classList.remove("green-button");
 
 })
