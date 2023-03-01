@@ -717,11 +717,12 @@ select{
 	font-weight: 700;
 	border: none;
 	border-radius:60px ;
-	size: 14px;
+	font-size: 14px;
 	background-color: grey;
 	width: 237px;
 	height: 36px;
 	align-self: center;
+	transition: 1s;
 }
 
 #form-post button.green-button{

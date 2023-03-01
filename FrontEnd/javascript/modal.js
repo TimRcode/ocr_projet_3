@@ -68,7 +68,6 @@ if (Auth && Auth.token) {
     event.preventDefault()
     //Pour chaque oeuvre sélectionnée, envoyer une requête DELETE au serveur
     for (const id of selectedWorks) {
-      console.log(id)
       const response = await fetch(`http://localhost:5678/api/works/${id}`, {
         method: "DELETE",
         headers: {
@@ -98,7 +97,6 @@ if (Auth && Auth.token) {
         //Parcourt les éléments du tableau dWorks
         //Si un des éléments de dWorks est égal au tableau selectedWorks, l'élément est supprimé
         const index = dWorks.findIndex(work => work.id === id);
-        console.log(index)
         if (index !== -1) {
           dWorks.splice(index, 1);
         }
@@ -119,7 +117,7 @@ const imagePreview = document.getElementById('image-preview');
 const openModalPost = document.querySelector("#add-image")
 const modalPost = document.querySelector("#modal-post")
 const fileInput = document.getElementById('file-input');
-const p = document.querySelector('#form-img p');
+const addImage = document.querySelector('#form-img p');
 //Ouvre la modal qui permet d'ajouter des travaux
 openModalPost.addEventListener("click" , event =>{
       event.preventDefault()
@@ -134,7 +132,7 @@ openModalPost.addEventListener("click" , event =>{
           if (fileSize > 4) {
             alert('Le fichier sélectionné est trop volumineux. Veuillez sélectionner un fichier de moins de 4 Mo.');
           } else {
-            p.style.display="none"
+            addImage.style.display="none"
             const imageUrl = URL.createObjectURL(file);
             imagePreview.src = imageUrl;
           }
@@ -148,21 +146,17 @@ openModalPost.addEventListener("click" , event =>{
         const title = document.getElementById('form-title').value;
         const category = document.getElementById('categories-form').value;
         const imageFile = document.getElementById('file-input').files[0];
-       
         
-
-
         if (title.length === 0 || category === '' || !imageFile) {
           console.error('erreur');
           return
         }
-  
+        //objet FormData() envoye les données du formulaire à l'api
         const formData = new FormData();
         formData.append('title', title);
         formData.append('category', category);
         formData.append('image', imageFile);
 
-      
         const response = await fetch("http://localhost:5678/api/works", {
           method: 'POST',
           headers: {
@@ -172,6 +166,7 @@ openModalPost.addEventListener("click" , event =>{
           });
         
         if (response.ok) {
+          //Permet de récupérer et d'ajouter le nouveau projet au tabelau dWorks
           let newWork = await response.json();
           dWorks.push(newWork)  
 
@@ -182,15 +177,15 @@ openModalPost.addEventListener("click" , event =>{
               displayWorks(dWorks);
           })
 
-        const listApi = document.querySelectorAll('.cat-api');
-        for(let list of listApi){
-          list.addEventListener('click', function(event){
-            event.preventDefault();
-              const filterWorks = dWorks.filter(work => work.categoryId == list.id );
-              document.querySelector('.gallery').innerHTML=""
-              displayWorks(filterWorks);
-            })     
-          }
+          const listApi = document.querySelectorAll('.cat-api');
+          for(let list of listApi){
+            list.addEventListener('click', function(event){
+              event.preventDefault();
+                const filterWorks = dWorks.filter(work => work.categoryId == list.id );
+                document.querySelector('.gallery').innerHTML=""
+                displayWorks(filterWorks);
+              })     
+            }
 
         displayWorks(dWorks)
         closeModal()
@@ -198,11 +193,10 @@ openModalPost.addEventListener("click" , event =>{
       });
 
 
-//Partie qui permet de fermer les différentes modal
-const a = document.getElementById('form-post');
+
 const button = document.querySelector("#form-post button");
 
-// function to check if all fields are filled
+// fonction pour verifier si tous les champs sont remplis
 function checkFields() {
   const title = document.getElementById('form-title').value;
   const category = document.getElementById('categories-form').value;
@@ -214,44 +208,45 @@ function checkFields() {
     return true;
   }
 }
+    // titre
+    document.getElementById('form-title').addEventListener('input', function() {
+      if (checkFields()) {
+        button.classList.add("green-button");
+      } else {
+        button.classList.remove("green-button");
+      }
+    });
 
-// event listener for title field
-document.getElementById('form-title').addEventListener('input', function() {
-  if (checkFields()) {
-    button.classList.add("green-button");
-  } else {
-    button.classList.remove("green-button");
-  }
-});
+    // categorie
+    document.getElementById('categories-form').addEventListener('change', function() {
+      if (checkFields()) {
+        button.classList.add("green-button");
+      } else {
+        button.classList.remove("green-button");
+      }
+    });
 
-// event listener for category field
-document.getElementById('categories-form').addEventListener('change', function() {
-  if (checkFields()) {
-    button.classList.add("green-button");
-  } else {
-    button.classList.remove("green-button");
-  }
-});
+    // image
+    document.getElementById('file-input').addEventListener('change', function() {
+      if (checkFields()) {
+        button.classList.add("green-button");
+      } else {
+        button.classList.remove("green-button");
+      }
+    });
 
-// event listener for image field
-document.getElementById('file-input').addEventListener('change', function() {
-  if (checkFields()) {
-    button.classList.add("green-button");
-  } else {
-    button.classList.remove("green-button");
-  }
-});
 
-//fonction pour fermer la modal
+//Partie qui permet de fermer les différentes modal
+
+// fonction pour fermer la modal
 function closeModal(){
   modal.style.display = "none";
   modalPost.style.display = "none";
-  imagePreview.style.display = 'none'; // Masquer l'aperçu de l'image
-  fileInput.value = ''; // Réinitialiser le champ input-file
-  document.getElementById('form-title').value='';
-  document.getElementById('categories-form').value='';
+  imagePreview.style.display = 'none'; // Remettre à zéro le champ de l'image
+  document.getElementById('form-title').value=''; // Remettre à zéro le champ du titre
+  document.getElementById('categories-form').value=''; // Remettre à zéro le champ de la catégorie
   button.classList.remove("green-button");
-  p.style.display=""
+  addImage.style.display="";
   selectedWorks = [];
 }
 
@@ -263,15 +258,11 @@ document.addEventListener("keydown", function(event) {
 
 const closeButton = document.querySelectorAll(".close");
 for(let cross of closeButton){
-cross.addEventListener("click", event=>{
-  event.preventDefault();
-  fileInput.value = ''; // Réinitialiser le champ input-file
-  imagePreview.style.display = 'none'; // Masquer l'aperçu de l'image
-  closeModal();
-
-});
+  cross.addEventListener("click", event=>{
+    event.preventDefault();
+    closeModal();
+  });
 }
-
 
 modal.addEventListener("click", function(event) {
   event.preventDefault()
@@ -282,7 +273,6 @@ modal.addEventListener("click", function(event) {
 
 modalPost.addEventListener("click", function(event) {
   if (event.target === modalPost) {
-    
     closeModal();
   }
 });
@@ -290,13 +280,11 @@ modalPost.addEventListener("click", function(event) {
 const backArrow = document.querySelector(".arrow-back")
 backArrow.addEventListener("click", event =>{
   event.preventDefault()
-  fileInput.value = ''; // Réinitialiser le champ input-file
-  imagePreview.style.display = 'none'; // Masquer l'aperçu de l'image
   modalPost.style.display="none"
   modal.style.display=""
-  p.style.display=""
+  imagePreview.style.display = 'none'; // Masquer l'aperçu de l'image
   document.getElementById('form-title').value='';
   document.getElementById('categories-form').value='';
+  addImage.style.display=""
   button.classList.remove("green-button");
-
 })
