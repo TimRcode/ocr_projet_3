@@ -11,5 +11,5 @@ Pour visionner ce projet, suivez ces étapes :
 !Ouvrez deux fenêtres différentes pour le back et le front pour un meilleur rendu.
 
 !Pour vous connecter au compte administrateur :
-email: sophie.bluel@test.tld
-password: S0phie 
+Email: sophie.bluel@test.tld
+Password: S0phie 
