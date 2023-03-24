@@ -8,7 +8,7 @@ Pour visionner ce projet, suivez ces étapes :
 2. Installer les dépendances avec NPM install.
 3. Mettez-vous dans le dossier backend et saisir : npm start.
 
-!Ouvrez deux fenêtres différentes pour back et le front pour un meilleur rend.
+!Ouvrez deux fenêtres différentes pour le back et le front pour un meilleur rendu.
 
 !Pour vous connecter au compte administrateur :
 email: sophie.bluel@test.tld
