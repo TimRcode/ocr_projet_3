@@ -1,6 +1,4 @@
-//URLs des API
-
-
+//URLs données API
 const apiWorks = 'http://localhost:5678/api/works';
 const apiCategories = 'http://localhost:5678/api/categories';
 
@@ -8,8 +6,11 @@ const apiCategories = 'http://localhost:5678/api/categories';
 async function getWorks() {
     const response = await fetch(apiWorks);
     const dataWorks = await response.json();
+    console.log(response)
     return dataWorks;
 }
+
+
 //Récupére les données des catégories depuis l'API
 async function getCategories() {
     const response = await fetch(apiCategories);
@@ -87,7 +88,6 @@ for(let list of listApi){
         event.preventDefault();
         
             const filterWorks = dWorks.filter(work => work.categoryId == list.id );
-           
             document.querySelector('.gallery').innerHTML=""
             displayWorks(filterWorks)
             })     

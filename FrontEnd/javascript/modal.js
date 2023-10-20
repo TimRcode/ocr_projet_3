@@ -156,15 +156,16 @@ openModalPost.addEventListener("click" , event =>{
         formData.append('title', title);
         formData.append('category', category);
         formData.append('image', imageFile);
-
+        
         const response = await fetch("http://localhost:5678/api/works", {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${Auth.token}`
           },
           body: formData
+          
           });
-        
+          
         if (response.ok) {
           //Permet de récupérer et d'ajouter le nouveau projet au tabelau dWorks
           let newWork = await response.json();

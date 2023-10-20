@@ -53,7 +53,7 @@ if(loginSubmit){
 //JSON.parse convertit la chaîne de caractères au format JSON en un objet JavaScript
 const Auth = JSON.parse(localStorage.getItem('Auth'))
 
-//Condition si  "Auth" et le token sont true alors là condition est exécuté
+//Condition si  "Auth" et le token sont true alors la condition est exécuté
 if ( Auth && Auth.token) {
         const loginButton = document.querySelector(".login");
 
